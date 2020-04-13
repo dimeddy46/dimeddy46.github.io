@@ -1,4 +1,4 @@
-int speed = 2, playerSize = 15, targetSz = 10;
+int speed = 2, playerSize = 15, windowSafezone = 10, targetSize = 5;
 float x1, y1, pX, pY, x2, y2, viewArea = 30.0, finalX, finalY;
 boolean[] keys = new boolean[4];
 ArrayList<Line> lines = new ArrayList<Line>();
@@ -39,44 +39,44 @@ void draw()
     }
     
     fill(255, 0, 0);
-    rect(finalX, finalY, 20, 20);
+    rect(finalX + targetSize / 2, finalY + targetSize / 2, targetSize, targetSize);
     line(pX, pY, finalX, finalY);
 }
 
 boolean isValidTarget(float x, float max)
 {
-   return x >= targetSz && max-targetSz >= x;
+   return x >= windowSafezone && max-windowSafezone >= x;
 }
 
 void setMouseProjection()
 {   
     float slope = (y2 - pY) / (x2 - pX);   
-    float projX = (targetSz + slope * pX - pY) / slope; 
-    float projY = slope * targetSz - slope*pX + pY;
+    float projX = (windowSafezone + slope * pX - pY) / slope; 
+    float projY = slope * windowSafezone - slope*pX + pY;
     float testX = (height + slope * pX - pY) / slope;
     float testY = slope * width - slope*pX + pY;
 
     if(y2 - pY > 0 && isValidTarget(testX, width))   // jos
     {
         finalX = testX; 
-        finalY = height-targetSz;
+        finalY = height-windowSafezone;
     } 
     
     if(x2 - pX > 0 && isValidTarget(testY, height))  // dreapta 
     {
-        finalX = width-targetSz; 
+        finalX = width-windowSafezone;
         finalY = testY;
     }
     
     if(y2 - pY < 0 && isValidTarget(projX, width))   // sus
     {
         finalX = projX; 
-        finalY = targetSz;
+        finalY = windowSafezone;
     }  
     
     if(x2 - pX < 0 && isValidTarget(projY, height))  // stanga
     {
-        finalX = targetSz; 
+        finalX = windowSafezone;
         finalY = projY;
     }  
 
