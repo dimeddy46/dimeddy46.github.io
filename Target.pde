@@ -39,7 +39,7 @@ void draw()
     }
     
     fill(255, 0, 0);
-    circle(finalX, finalY, 20);
+    rect(finalX, finalY, 20, 20);
     line(pX, pY, finalX, finalY);
 }
 
