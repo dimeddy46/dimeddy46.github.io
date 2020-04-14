@@ -23,12 +23,22 @@ class Shape
 }
 
 class Line
-{
+{   
     float x3, y3, x4, y4;
     
     Line(float x3, float y3, float x4, float y4) 
     {
         this.x3 = x3; this.y3 = y3;
         this.x4 = x4; this.y4 = y4;
+    }   
+}
+
+class Dot
+{  
+    float x, y;
+    Dot(float x, float y)
+    { 
+        this.x = x;
+        this.y = y;
     }   
 }
